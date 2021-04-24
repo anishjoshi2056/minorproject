@@ -4,6 +4,7 @@ const path = require('path');
 const port = 3000;
 const Campground = require('./models/campground');
 const mongoose = require('mongoose');
+const { ADDRGETNETWORKPARAMS } = require('dns');
 //Connection with MongoDB
 
 mongoose.connect('mongodb://localhost:27017/yelpcamp',{
@@ -23,10 +24,16 @@ app.set('views',path.join(__dirname,'views'));
 app.get('/',(req,res)=> {
     res.render('home')
 })
-app.get('/makecampground',async (req,res)=> {
-    const camp = new Campground({title:"My background",description:"Cheap camping!",price:13000});
-    await camp.save();
-    res.send(camp);
+// app.get('/makecampground',async (req,res)=> {
+//     const camp = new Campground({title:"My background",description:"Cheap camping!",price:13000});
+//     await camp.save();
+//     res.send(camp);
+// })
+
+app.get('/campgrounds', async(req,res)=>{
+    const campgrounds = await Campground.find({})
+    console.log(campgrounds)
+    res.render('campgrounds/index',{campgrounds}) 
 })
 app.listen(port,()=> {
     console.log(`Listining to the port:${port}`)
