@@ -8,7 +8,7 @@
 </head>
 <body>
     <h1>Edit for Campground</h1>
-    <form action="/campgrounds/<%-foundCampground._id%>" method="POST">
+    <form action="/campgrounds/<%-foundCampground._id%>?_method=PUT" method="POST">
         <div>
             <label for="title">Edit Title</label>
             <input type="text" id="title" name="foundCampground[title]" value="<%-foundCampground.title%>">

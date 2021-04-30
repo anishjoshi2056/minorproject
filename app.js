@@ -5,6 +5,8 @@ const port = 3000;
 const Campground = require('./models/campground');
 const mongoose = require('mongoose');
 const { ADDRGETNETWORKPARAMS } = require('dns');
+const methodOverride = require('method-override');
+const campground = require('./models/campground');
 //Connection with MongoDB
 
 mongoose.connect('mongodb://localhost:27017/yelpcamp', {
@@ -23,6 +25,8 @@ app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //To parse the req.body
 app.use(express.urlencoded({ extended: true }))
+// override with POST having ?_method=DELETE
+app.use(methodOverride('_method'));
 //Routes
 //Homepage
 app.get('/', (req, res) => {
@@ -49,7 +53,7 @@ app.post('/campgrounds', async (req, res) => {
 //Route for specific Campground
 app.get('/campgrounds/:id', async (req, res) => {
     const campground = await Campground.findById(req.params.id);
-    res.render('campgrounds/show', { campground })
+    res.render('campgrounds/show', { campground });
 })
 //Routes for Editing and Updating specific campground
 app.get('/campgrounds/:id/edit', async (req, res) => {
@@ -60,19 +64,22 @@ app.get('/campgrounds/:id/edit', async (req, res) => {
     //Render a update form
     res.render('campgrounds/edit', { foundCampground });
 })
-app.post('/campgrounds/:id', async (req, res) => {
+app.put('/campgrounds/:id', async (req, res) => {
     /*Grap the foundCampground id and update its content through form */
     const editedCampground = req.body.foundCampground;
-    const updatedCampground = await Campground.findByIdAndUpdate(req.params.id, editedCampground, (err, result) => {
+    await Campground.findByIdAndUpdate(req.params.id, editedCampground, (err, result) => {
         if (err) {
-            res.send(err)
+            res.send(err);
         } else {
             res.redirect('/campgrounds');
-            //Render an updated form
-            console.log(updatedCampground);
         }
     });
-
+})
+//Route for Delete Campground
+app.delete('/campgrounds/:id',async(req,res)=> {
+    const {id} = req.params;
+    await Campground.findByIdAndDelete(id);
+    res.redirect('/campgrounds');
 })
 
 app.listen(port, () => {
