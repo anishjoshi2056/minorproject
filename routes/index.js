@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 //Homepage
 router.get('/', (req, res) => {
-    res.render('home')
+    res.render('homepage')
 })
 //Route for login
 router.get('/login',(req,res)=> {
