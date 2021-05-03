@@ -1,10 +1,9 @@
 const mongoose = require('mongoose');
-const campground = require('../models/campground');
-const Campground = require('../models/campground');
+const Saaman = require('../models/saamanSchema');
 const cities = require('./cities');
 const {descriptors,places} = require('./seedHelpers');
 
-mongoose.connect('mongodb://localhost:27017/yelpcamp',{
+mongoose.connect('mongodb://localhost:27017/sastosaaman',{
     useNewUrlParser:true,
     useCreateIndex:true,
     useUnifiedTopology:true
@@ -18,14 +17,16 @@ const sample = (array) => {
     return array[Math.floor(Math.random() * array.length)];
 }
 const seedDB = async () => {
-    await Campground.deleteMany({});
+    await Saaman.deleteMany({});
     for(let i = 0; i < 50 ;i++) {
         const rand1000 = Math.floor((Math.random() * 1000));
-        const camp = new Campground({
+        const saaman = new Saaman({
+            title:`${sample(descriptors)} ${sample(places)}`,
+            price:`${sample(descriptors)} ${sample(places)}`,
+            description:`${sample(descriptors)} ${sample(places)}`,
             location:`${cities[rand1000].city} , ${cities[rand1000].state}`,
-            title:`${sample(descriptors)} ${sample(places)}`
         })
-        await camp.save();
+        await saaman.save();
     }
 
 }

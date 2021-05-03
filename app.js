@@ -2,12 +2,11 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const port = 3000;
-const Campground = require('./models/campground');
 const mongoose = require('mongoose');
 const { ADDRGETNETWORKPARAMS } = require('dns');
 const methodOverride = require('method-override');
 //Connection with MongoDB
-mongoose.connect('mongodb://localhost:27017/yelpcamp', {
+mongoose.connect('mongodb://localhost:27017/sastosaaman', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true
@@ -22,18 +21,17 @@ mongoose.set('useFindAndModify', false);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 //To parse the req.body
-app.use(express.urlencoded({ extended: true }))
+app.use(express.urlencoded({ extended: true }));
 // override with POST having ?_method=DELETE
 app.use(methodOverride('_method'));
 //Static Folders
 app.use(express.static(path.join(__dirname,'public')));
 //Routes
-//Routes other than Campground
+//Routes other than Saamans
 app.use('/',require('./routes/index'));
-//View all Campground
-app.use('/campgrounds',require('./routes/campgrounds'));
-
+//View all Saamans
+app.use('/saamans',require('./routes/saamanRoute'));
 //Listening to the port
 app.listen(port, () => {
-    console.log(`Listining to the port:${port}`)
+    console.log(`Listining to the port:${port}`);
 })

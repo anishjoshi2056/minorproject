@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New saaman</title>
+</head>
+
+<body>
+    <form action="/saamans" method="POST">
+        <div>
+            <label for="title">Title</label>
+            <input type="text" id="title" name="saaman[title]">
+        </div>
+        <div>
+            <label for="price">price</label>
+            <input type="text" id="price" name="saaman[price]">
+        </div>
+        <div>
+            <label for="description">description</label>
+            <input type="text" id="description" name="saaman[description]">
+        </div>
+        <div>
+            <label for="location">location</label>
+            <input type="text" id="location" name="saaman[location]">
+        </div>
+        <button>Add saaman</button>
+    </form>
+    <a href="/saamans">View All Saamans</a>
+</body>
+
+</html>

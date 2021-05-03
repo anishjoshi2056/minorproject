@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Saaman</title>
+</head>
+<body>
+    <h1>Edit for saaman</h1>
+    <form action="/saamans/<%-foundSaaman._id%>?_method=PUT" method="POST">
+        <div>
+            <label for="title">Edit Title</label>
+            <input type="text" id="title" name="foundSaaman[title]" value="<%-foundSaaman.title%>">
+        </div>
+        <div>
+            <label for="price">Edit Price</label>
+            <input type="text" id="price" name="foundSaaman[price]" value="<%-foundSaaman.price%>">
+        </div>
+        <div>
+            <label for="description">Edit description</label>
+            <input type="text" id="description" name="foundSaaman[description]" value="<%-foundSaaman.description%>">
+        </div>
+        <div>
+            <label for="location">Edit location</label>
+            <input type="text" id="location" name="foundSaaman[location]" value="<%-foundSaaman.location%>">
+        </div>
+        <button>Edit Saaman</button>
+    </form>
+    <a href="/saamans/<%-foundSaaman._id%>">Back</a>
+</body>
+</html>
