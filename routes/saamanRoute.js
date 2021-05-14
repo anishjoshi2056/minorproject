@@ -1,12 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const Saaman = require('../models/saamanSchema');
-//Routes that starts with /campgrounds
+//Routes that starts with /saamans
 router.get('/', async (req, res) => {
     const saamans = await Saaman.find({})
     res.render('saamans/index', { saamans });
 })
-//Routes for adding new Campground
+//Routes for adding new saaman
 router.get('/new', (req, res) => {
     res.render('saamans/new');
 })
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     await saaman.save();
     res.redirect(`/saamans/${saaman._id}`);
 })
-//Route for specific Campground
+//Route for specific saaman
 router.get('/:id', async (req, res) => {
 
     const saaman = await Saaman.findById(req.params.id);
@@ -27,15 +27,15 @@ router.get('/:id', async (req, res) => {
 })
 //Routes for Editing and Updating specific campground
 router.get('/:id/edit', async (req, res) => {
-    /*To update specific campground first find that campground through it's it*/
-    //Find campground through id
+    /*To update specific saaman first find that campground through it's it*/
+    //Find saaman through id
     const foundSaaman = await Saaman.findById(req.params.id);
-    //Pass that foundCampground into edit file
+    //Pass that foundSaaman into edit file
     //Render a update form
     res.render('saamans/edit', { foundSaaman });
 })
 router.put('/:id', async (req, res) => {
-    /*Grap the foundCampground id and update its content through form */
+    /*Grap the foundSaaman id and update its content through form */
     const editedSaaman = req.body.foundSaaman;
     await Saaman.findByIdAndUpdate(req.params.id, editedSaaman, (err, result) => {
         if (err) {
@@ -45,7 +45,7 @@ router.put('/:id', async (req, res) => {
         }
     });
 })
-//Route for Delete Campground
+//Route for Delete Saaman
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;
     await Saaman.findByIdAndDelete(id);
