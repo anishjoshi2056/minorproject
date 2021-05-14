@@ -1,32 +1,43 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Saaman</title>
-</head>
-<body>
-    <h1>Edit for saaman</h1>
-    <form action="/saamans/<%-foundSaaman._id%>?_method=PUT" method="POST">
-        <div>
-            <label for="title">Edit Title</label>
-            <input type="text" id="title" name="foundSaaman[title]" value="<%-foundSaaman.title%>">
+<%layout('./layouts/boilerplate')%>
+    <div class="row">
+        <h1 class="text-center">Edit Saaman</h1>
+        <div class="col-6 offset-3">
+
+            <form action="/saamans/<%-foundSaaman._id%>?_method=PUT" method="POST">
+                <div class="mb-3">
+                    <label class="form-label" for="title">Edit Title</label>
+                    <input class="form-control" type="text" id="title" name="foundSaaman[title]"
+                        value="<%-foundSaaman.title%>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Edit Image Url</label>
+                    <input class="form-control" type="text" id="image" name="foundSaaman[image]"
+                        value="<%-foundSaaman.image%>">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="price">Edit Price </label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="price-label">$</span>
+                        <input placeholder="0" type="text" class="form-control" id="price" name="foundSaaman[price]"
+                            aria-label="price" aria-describedby="price-label" value="<%-foundSaaman.price%>">
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Edit Description</label>
+                    <textarea class="form-control" type="text" id="description"
+                        name="foundSaaman[description]"><%-foundSaaman.description%></textarea>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="location">Edit Location</label>
+                    <input class="form-control" type="text" id="location" name="foundSaaman[location]"
+                        value="<%-foundSaaman.location%>">
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-info">Edit Saaman</button>
+                </div>
+            </form>
+            <a href="/saamans/<%-foundSaaman._id%>">Back</a>
+
         </div>
-        <div>
-            <label for="price">Edit Price</label>
-            <input type="text" id="price" name="foundSaaman[price]" value="<%-foundSaaman.price%>">
-        </div>
-        <div>
-            <label for="description">Edit description</label>
-            <input type="text" id="description" name="foundSaaman[description]" value="<%-foundSaaman.description%>">
-        </div>
-        <div>
-            <label for="location">Edit location</label>
-            <input type="text" id="location" name="foundSaaman[location]" value="<%-foundSaaman.location%>">
-        </div>
-        <button>Edit Saaman</button>
-    </form>
-    <a href="/saamans/<%-foundSaaman._id%>">Back</a>
-</body>
-</html>
+    </div>

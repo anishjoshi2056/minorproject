@@ -18,16 +18,18 @@ const sample = (array) => {
 }
 const seedDB = async () => {
     await Saaman.deleteMany({});
-    // for(let i = 0; i < 50 ;i++) {
-    //     const rand1000 = Math.floor((Math.random() * 1000));
-    //     const saaman = new Saaman({
-    //         title:`${sample(descriptors)} ${sample(places)}`,
-    //         price:`${sample(descriptors)} ${sample(places)}`,
-    //         description:`${sample(descriptors)} ${sample(places)}`,
-    //         location:`${cities[rand1000].city} , ${cities[rand1000].state}`,
-    //     })
-    //     await saaman.save();
-    // }
+    for(let i = 0; i < 50 ;i++) {
+        const rand1000 = Math.floor((Math.random() * 1000));
+        const price = Math.floor(Math.random() *100) + 10;
+        const saaman = new Saaman({
+            title:`${sample(descriptors)} ${sample(places)}`,
+            image:'https://source.unsplash.com/collection/190727/800x600',
+            price,
+            description:`${sample(descriptors)} ${sample(places)}`,
+            location:`${cities[rand1000].city} , ${cities[rand1000].state}`,
+        })
+        await saaman.save();
+    }
 
 }
 seedDB();

@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const path = require('path');
 const dotenv = require('dotenv');
+const engine = require('ejs-mate');
 const port = 3000;
 const mongoose = require('mongoose');
 const { ADDRGETNETWORKPARAMS } = require('dns');
@@ -20,6 +21,8 @@ db.once("open", () => {
     console.log("database connected");
 })
 mongoose.set('useFindAndModify', false);
+// use ejs-locals for all ejs templates:
+app.engine('ejs', engine);
 //Setting view engine template
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));

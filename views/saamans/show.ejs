@@ -1,21 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Show</title>
-</head>
-<body>
-    <h1>saaman info</h1>
-    <h2><%=saaman.title%></h2>
-    <h3><%=saaman.location%></h3>
-    <footer>
-        <a href="/saamans">All saamans</a>
-        <a href="/saamans/<%-saaman._id%>/edit">Edit saaman</a>
-        <form action="/saamans/<%-saaman._id%>?_method=DELETE" method="POST">
-            <button>Delete saaman</button>
-        </form>
-    </footer>
-</body>
-</html>
+<%layout('./layouts/boilerplate')%>
+    <div class="row">
+        <div class="col-6 offset-3">
+            <div class="card mb-3">
+                <img src="<%=saaman.image%>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><%=saaman.title%></h5>
+                    <p class="card-text"><%=saaman.descriptipn%></p>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-muted"><%=saaman.location%></li>
+                    <li class="list-group-item">$<%=saaman.price%></li>
+                    <li class="list-group-item">A third item</li>
+                </ul>
+                <div class="card-body">
+                    <a class="card-link btn btn-info" href="/saamans/<%-saaman._id%>/edit">Edit saaman</a>
+                    <form class="d-inline" action="/saamans/<%-saaman._id%>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger" >Delete saaman</button>
+                    </form>
+                </div>
+                <div class="card-footer text-muted">
+                    2 days ago
+                </div>
+            </div>
+        </div>
+    </div>
+            
